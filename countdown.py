@@ -31,7 +31,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.metric(label="Quota di partenza (Giorni)", value=giorni_totali)
 with col2:
-    st.metric(label="Quota attuale 📉", value=giorni_rimanenti")
+    st.metric(label="Quota attuale 📉", value=giorni_rimanenti)
 with col3:
     st.metric(label="Discesa completata", value=f"{percentuale_completata}%")
 
