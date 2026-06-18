@@ -24,7 +24,7 @@ giorni_rimanenti = (DATA_FINE_PREAVVISO - OGGI).days
 # Limiti di sicurezza
 giorni_passati = max(0, min(giorni_passati, giorni_totali))
 giorni_rimanenti = max(0, giorni_rimanenti)
-percentuale_completata = int((giorni_passati / giorni_totali) * 100)
+percentuale_completata = round((giorni_passati / giorni_totali) * 100, 2)
 
 # --- METRICHE IN EVIDENZA ---
 col1, col2, col3 = st.columns(3)
