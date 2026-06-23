@@ -3,6 +3,16 @@ from datetime import date, timedelta
 import pandas as pd
 import plotly.express as px
 
+def giorni_lavorativi(start_date, end_date):
+    giorni = 0
+    delta = end_date - start_date
+    for i in range(delta.days + 1):
+        giorno_corrente = start_date + timedelta(days=i)
+        if giorno_corrente.weekday() < 5:  # Lunedì=0, Domenica=6
+            giorni += 1
+    return giorni
+
+
 # Configurazione pagina
 st.set_page_config(page_title="The Descent - Next Chapter", page_icon="🏔️", layout="centered")
 
@@ -17,9 +27,9 @@ DATA_FINE_PREAVVISO = date(2026, 10, 2)
 OGGI = date.today()
 
 # --- CALCOLI ---
-giorni_totali = (DATA_FINE_PREAVVISO - DATA_INIZIO_PREAVVISO).days
-giorni_passati = (OGGI - DATA_INIZIO_PREAVVISO).days
-giorni_rimanenti = (DATA_FINE_PREAVVISO - OGGI).days
+giorni_totali = giorni_lavorativi(DATA_INIZIO_PREAVVISO, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - DATA_INIZIO_PREAVVISO).days
+giorni_passati = giorni_lavorativi(DATA_INIZIO_PREAVVISO, OGGI) #(OGGI - DATA_INIZIO_PREAVVISO).days
+giorni_rimanenti = giorni_lavorativi(OGGI, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - OGGI).days
 
 # Limiti di sicurezza
 giorni_passati = max(0, min(giorni_passati, giorni_totali))
