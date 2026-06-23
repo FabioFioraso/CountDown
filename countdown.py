@@ -93,7 +93,8 @@ else:
     st.info(f"🏕️ Ti trovi a **{giorni_rimanenti}** metri (giorni) di quota. Il sentiero è tracciato, continua a scendere con passo costante.")
 
 # Sidebar standard per i task
-st.sidebar.header("📋 Checkpoint del Sentiero")
-st.sidebar.checkbox("Documentazione completata")
-st.sidebar.checkbox("Consegna delle credenziali")
-st.sidebar.checkbox("Saluti finali")
+st.sidebar.header("📋 Ricordati di:")
+st.sidebar.checkbox("Documentare i processi più utili")
+st.sidebar.checkbox("Sistemare e pulire i file locali")
+st.sidebar.checkbox("Salutare i colleghi più stretti")
+st.sidebar.checkbox("Cancellare account personali da pc aziendale")
