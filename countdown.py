@@ -83,12 +83,16 @@ st.markdown("---")
 if OGGI >= DATA_FINE_PREAVVISO:
     st.balloons()
     st.success("🎉 **Sei arrivato a valle! Il vecchio percorso è concluso, sei arrivato!** 🚀")
+elif percentuale_completata >= 90:
+    st.info("**Ci siamo ormai, ultimi sforzi! Tieni duro!**")
 elif percentuale_completata >= 75:
     st.info("🏃‍♂️ **Sei all'ultimo chilometro! Manca pochissimo, mantieni alta la professionalità e prepara gli scatoloni.**")
 elif percentuale_completata >= 50:
     st.info("🌓 **Giro di boa superato! Più di metà strada è alle tue spalle. Il countdown accelera da qui in poi.**")
-elif percentuale_completata >= 25:
+elif percentuale_completata >= 35:
     st.success("🌱 **I motori si stanno scaldando. Stai lasciando tutto in ordine, un giorno alla volta.**")
+elif percentuale_completata >= 20:
+    st.success("🌱 **Forza dai!**")
 else:
     st.info(f"🏕️ Ti trovi a **{giorni_rimanenti}** metri (giorni) di quota. Il sentiero è tracciato, continua a scendere con passo costante.")
 
