@@ -38,7 +38,7 @@ giorni_rimanenti_feriali = giorni_lavorativi(OGGI, DATA_FINE_PREAVVISO) #(DATA_F
 
 # Limiti di sicurezza
 giorni_passati = max(0, min(giorni_passati_feriali, giorni_totali_feriali))
-giorni_rimanenti = max(0, giorni_rimanenti_feriali)
+giorni_rimanenti = max(0, giorni_rimanenti)
 percentuale_completata = round((giorni_passati_feriali / giorni_totali_feriali) * 100, 2)
 
 # --- METRICHE IN EVIDENZA ---
