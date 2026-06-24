@@ -25,6 +25,7 @@ st.markdown("---")
 DATA_INIZIO_PREAVVISO = date(2026, 6, 1)  
 DATA_FINE_PREAVVISO = date(2026, 10, 2)  
 OGGI = date.today()
+DOMANI = date.tomorrow()
 
 # --- CALCOLI ---
 giorni_totali = (DATA_FINE_PREAVVISO - DATA_INIZIO_PREAVVISO).days
@@ -33,8 +34,8 @@ giorni_totali_feriali = giorni_lavorativi(DATA_INIZIO_PREAVVISO, DATA_FINE_PREAV
 giorni_passati = (OGGI - DATA_INIZIO_PREAVVISO).days
 giorni_passati_feriali = giorni_lavorativi(DATA_INIZIO_PREAVVISO, OGGI) #(OGGI - DATA_INIZIO_PREAVVISO).days
 
-giorni_rimanenti = (DATA_FINE_PREAVVISO - OGGI).days
-giorni_rimanenti_feriali = giorni_lavorativi(OGGI, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - OGGI).days
+#giorni_rimanenti = (DATA_FINE_PREAVVISO - OGGI).days
+giorni_rimanenti_feriali = giorni_lavorativi(DOMANI, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - OGGI).days
 
 # Limiti di sicurezza
 giorni_passati = max(0, min(giorni_passati_feriali, giorni_totali_feriali))
