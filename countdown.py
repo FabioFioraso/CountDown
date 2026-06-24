@@ -44,9 +44,9 @@ percentuale_completata = round((giorni_passati_feriali / giorni_totali_feriali) 
 # --- METRICHE IN EVIDENZA ---
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric(label="Quota di partenza (Giorni)", value=giorni_totali_feriali)
+    st.metric(label="Quota di partenza (Giorni lav.)", value=giorni_totali_feriali)
 with col2:
-    st.metric(label="Quota attuale (Giorni)📉", value=giorni_rimanenti_feriali)
+    st.metric(label="Quota attuale (Giorni lav.)📉", value=giorni_rimanenti_feriali)
 with col3:
     st.metric(label="Discesa completata", value=f"{percentuale_completata}%")
 
@@ -71,7 +71,7 @@ fig = px.area(
     x="Data", 
     y="Giorni Rimanenti",
     title="Verso quota 0 giorni",
-    labels={"Giorni Rimanenti": "Giorni alla fine", "Data": "Calendario"},
+    labels={"Giorni Rimanenti cal.": "Giorni alla fine cal.", "Data": "Calendario"},
     template="plotly_white"
 )
 
