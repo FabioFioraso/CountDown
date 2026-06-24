@@ -27,21 +27,26 @@ DATA_FINE_PREAVVISO = date(2026, 10, 2)
 OGGI = date.today()
 
 # --- CALCOLI ---
-giorni_totali = giorni_lavorativi(DATA_INIZIO_PREAVVISO, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - DATA_INIZIO_PREAVVISO).days
-giorni_passati = giorni_lavorativi(DATA_INIZIO_PREAVVISO, OGGI) #(OGGI - DATA_INIZIO_PREAVVISO).days
-giorni_rimanenti = giorni_lavorativi(OGGI, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - OGGI).days
+giorni_totali = (DATA_FINE_PREAVVISO - DATA_INIZIO_PREAVVISO).days
+giorni_totali_feriali = giorni_lavorativi(DATA_INIZIO_PREAVVISO, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - DATA_INIZIO_PREAVVISO).days
+
+giorni_passati = (OGGI - DATA_INIZIO_PREAVVISO).days
+giorni_passati_feriali = giorni_lavorativi(DATA_INIZIO_PREAVVISO, OGGI) #(OGGI - DATA_INIZIO_PREAVVISO).days
+
+giorni_rimanenti = (DATA_FINE_PREAVVISO - OGGI).days
+giorni_rimanenti_feriali = giorni_lavorativi(OGGI, DATA_FINE_PREAVVISO) #(DATA_FINE_PREAVVISO - OGGI).days
 
 # Limiti di sicurezza
-giorni_passati = max(0, min(giorni_passati, giorni_totali))
-giorni_rimanenti = max(0, giorni_rimanenti)
-percentuale_completata = round((giorni_passati / giorni_totali) * 100, 2)
+giorni_passati = max(0, min(giorni_passati_feriali, giorni_totali_feriali))
+giorni_rimanenti = max(0, giorni_rimanenti_feriali)
+percentuale_completata = round((giorni_passati_feriali / giorni_totali_feriali) * 100, 2)
 
 # --- METRICHE IN EVIDENZA ---
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.metric(label="Quota di partenza (Giorni)", value=giorni_totali)
+    st.metric(label="Quota di partenza (Giorni)", value=giorni_totali_feriali)
 with col2:
-    st.metric(label="Quota attuale (Giorni)📉", value=giorni_rimanenti)
+    st.metric(label="Quota attuale (Giorni)📉", value=giorni_rimanenti_feriali)
 with col3:
     st.metric(label="Discesa completata", value=f"{percentuale_completata}%")
 
