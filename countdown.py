@@ -44,11 +44,11 @@ percentuale_completata = round((giorni_passati_feriali / giorni_totali_feriali) 
 # --- METRICHE IN EVIDENZA ---
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    st.metric(label="Quota di partenza (Giorni lav.)", value=giorni_totali_feriali)
+    st.metric(label="Quota di partenza (gg lav)", value=giorni_totali_feriali)
 with col2:
-    st.metric(label="Quota attuale (Giorni lav.)📉", value=giorni_rimanenti_feriali)
+    st.metric(label="Quota attuale (gg lav)📉", value=giorni_rimanenti_feriali)
 with col3:
-    st.metric(label="Scalini scesi (Giorni lav.", value=giorni_passati_feriali)
+    st.metric(label="Scalini scesi (gg lav)", value=giorni_passati_feriali)
 with col4:
     st.metric(label="Discesa completata", value=f"{percentuale_completata}%")
 
