@@ -42,7 +42,7 @@ giorni_rimanenti = max(0, giorni_rimanenti)
 percentuale_completata = round((giorni_passati_feriali / giorni_totali_feriali) * 100, 2)
 
 # --- METRICHE IN EVIDENZA ---
-col1, col2, col3, col4 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric(label="Quota di partenza (Giorni lav.)", value=giorni_totali_feriali)
 with col2:
