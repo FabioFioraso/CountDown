@@ -25,7 +25,7 @@ st.markdown("---")
 DATA_INIZIO_PREAVVISO = date(2026, 6, 1)  
 DATA_FINE_PREAVVISO = date(2026, 10, 2)  
 OGGI = date.today()
-DOMANI = date.tomorrow()
+DOMANI = OGGI + 1
 
 # --- CALCOLI ---
 giorni_totali = (DATA_FINE_PREAVVISO - DATA_INIZIO_PREAVVISO).days
