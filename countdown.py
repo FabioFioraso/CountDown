@@ -108,7 +108,30 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("---")
 
 # --- INTERFACCIA PSICOLOGICA ---
+# --- IL BANCO DELLE FRASI (Divise per macro-fasi per rimanere coerenti) ---
+FRASI_INIZIO = [
+    "“Chi sale sulle montagne più alte ride di tutte le tragedie.” — Friedrich Nietzsche. Tu stai scendendo, quindi rilassati.",
+    "Il primo passo non ti porta dove vuoi arrivare, ma ti toglie da dove sei. Focus sul passaggio di consegne.",
+    "Zaino in spalla e passo costante. Le prime tappe sono di puro assestamento.",
+    "Mantieni la calma, documenta il codice e lascia che il tempo faccia il suo lavoro.",
+    "La transizione è iniziata. Un giorno alla volta, con la massima professionalità."
+]
 
+FRASI_METÀ = [
+    "“Non esistono grandi conquiste che non siano state precedute da un piccolo passo.” — Proverbio. Sei a metà valle!",
+    "Il panorama comincia a cambiare. Il vecchio lavoro è quasi alle spalle, il nuovo si intravede all'orizzonte.",
+    "Giro di boa. Da qui in poi la gravità gioca a tuo favore, la discesa accelera.",
+    "Metà del sentiero è andata. Ottimo momento per fare il punto sui task rimasti nella sidebar.",
+    "La costanza batte il talento. Ogni giorno completato è un metro di quota guadagnato verso la libertà."
+]
+
+FRASI_FINE = [
+    "“La fine di un viaggio è solo l'inizio di un altro.” — José Saramago. Prepara gli scatoloni virtuali.",
+    "Vedi le luci della valle là in fondo? Manca pochissimo. Lascia un ottimo ricordo dietro di te.",
+    "Ultimi tornanti. Respira l'aria fresca del nuovo inizio.",
+    "Quota zero in vista. È il momento dei saluti e di ripulire i file locali.",
+    "Il traguardo è dietro la prossima curva. Complimenti per aver gestito il percorso al meglio."
+]
 
 if OGGI >= DATA_FINE_PREAVVISO:
     st.balloons()
@@ -124,12 +147,24 @@ if OGGI >= DATA_FINE_PREAVVISO:
 #elif percentuale_completata >= 20:
 #    st.info("🌱 **Forza dai!**")
 else:
-    st.info(ottieni_citazione_del_giorno())
+    if percentuale_completata < 35:
+        lista_attiva = FRASI_INIZIO
+    elif percentuale_completata < 75:
+        lista_attiva = FRASI_METÀ
+    else:
+        lista_attiva = FRASI_FINE
+    
+    # Sceglie una frase che cambia ogni giorno in base a 'giorni_passati'
+    indice_frase = giorni_passati % len(lista_attiva)
+    frase_del_giorno = lista_attiva[indice_frase]
+    
+    # Mostra la frase in un box carino
+    st.info(f"💬 **Il pensiero di oggi:**\n\n{frase_del_giorno}")
     #st.info(f"🏕️ Ti trovi a **{giorni_rimanenti}** metri (giorni) di quota. Il sentiero è tracciato, continua a scendere con passo costante.")
 
 # Sidebar standard per i task
-st.sidebar.header("📋 Ricordati di:")
-st.sidebar.checkbox("Documentare i processi più utili")
-st.sidebar.checkbox("Sistemare e pulire i file locali")
-st.sidebar.checkbox("Salutare i colleghi più stretti")
-st.sidebar.checkbox("Cancellare account personali da pc aziendale")
+#st.sidebar.header("📋 Ricordati di:")
+#st.sidebar.checkbox("Documentare i processi più utili")
+#st.sidebar.checkbox("Sistemare e pulire i file locali")
+#st.sidebar.checkbox("Salutare i colleghi più stretti")
+#st.sidebar.checkbox("Cancellare account personali da pc aziendale")
