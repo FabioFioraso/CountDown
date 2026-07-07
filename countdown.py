@@ -163,6 +163,8 @@ else:
     st.info(f"💬 **Il pensiero di oggi:**\n\n{frase_del_giorno}")
     #st.info(f"🏕️ Ti trovi a **{giorni_rimanenti}** metri (giorni) di quota. Il sentiero è tracciato, continua a scendere con passo costante.")
 
+st.success(ottieni_citazione_del_giorno())
+
 # Sidebar standard per i task
 #st.sidebar.header("📋 Ricordati di:")
 #st.sidebar.checkbox("Documentare i processi più utili")
