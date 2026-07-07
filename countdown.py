@@ -3,6 +3,7 @@ from datetime import date, timedelta
 import pandas as pd
 import plotly.express as px
 import requests
+import random
 
 def giorni_lavorativi(start_date, end_date):
     giorni = 0
