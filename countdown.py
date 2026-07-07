@@ -2,6 +2,7 @@ import streamlit as st
 from datetime import date, timedelta
 import pandas as pd
 import plotly.express as px
+import requests
 
 def giorni_lavorativi(start_date, end_date):
     giorni = 0
@@ -12,6 +13,15 @@ def giorni_lavorativi(start_date, end_date):
             giorni += 1
     return giorni
 
+def ottieni_citazione_del_giorno():
+    try:
+        response = requests.get("https://zenquotes.io/api/today")
+        data = response.json()
+        # Ritorna la citazione + l'autore
+        return f"“{data[0]['q']}” — {data[0]['a']}"
+    except:
+        # Frase di backup se internet non va
+        return "Fai un passo alla volta, la meta si avvicina."
 
 # Configurazione pagina
 st.set_page_config(page_title="The Descent - Next Chapter", page_icon="🏔️", layout="centered")
@@ -40,7 +50,7 @@ giorni_rimanenti_feriali = giorni_lavorativi(DOMANI, DATA_FINE_PREAVVISO) #(DATA
 # Limiti di sicurezza
 giorni_passati = max(0, min(giorni_passati_feriali, giorni_totali_feriali))
 giorni_rimanenti = max(0, giorni_rimanenti)
-percentuale_completata = round((giorni_passati_feriali / giorni_totali_feriali) * 100, 2)
+percentuale_completata = round((giorni_passati_feriali / giorni_totali_feriali) * 100, 1)
 
 # --- METRICHE IN EVIDENZA ---
 col1, col2, col3, col4 = st.columns(4)
@@ -98,21 +108,24 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("---")
 
 # --- INTERFACCIA PSICOLOGICA ---
+
+
 if OGGI >= DATA_FINE_PREAVVISO:
     st.balloons()
     st.success("🎉 **Sei arrivato a valle! Il vecchio percorso è concluso, sei arrivato!** 🚀")
-elif percentuale_completata >= 90:
-    st.info("**Ci siamo ormai, ultimi sforzi! Tieni duro!**")
-elif percentuale_completata >= 75:
-    st.info("🏃‍♂️ **Sei all'ultimo chilometro! Manca pochissimo, mantieni alta la professionalità e prepara gli scatoloni.**")
-elif percentuale_completata >= 50:
-    st.info("🌓 **Giro di boa superato! Più di metà strada è alle tue spalle. Il countdown accelera da qui in poi.**")
-elif percentuale_completata >= 35:
-    st.success("🌱 **I motori si stanno scaldando. Stai lasciando tutto in ordine, un giorno alla volta.**")
-elif percentuale_completata >= 20:
-    st.success("🌱 **Forza dai!**")
+#elif percentuale_completata >= 90:
+#    st.info("**Ci siamo ormai, ultimi sforzi! Tieni duro!**")
+#elif percentuale_completata >= 75:
+#    st.info("🏃‍♂️ **Sei all'ultimo chilometro! Manca pochissimo, mantieni alta la professionalità e prepara gli scatoloni.**")
+#elif percentuale_completata >= 50:
+#    st.info("🌓 **Giro di boa superato! Più di metà strada è alle tue spalle. Il countdown accelera da qui in poi.**")
+#elif percentuale_completata >= 35:
+#    st.info("🌱 **I motori si stanno scaldando. Stai lasciando tutto in ordine, un giorno alla volta.**")
+#elif percentuale_completata >= 20:
+#    st.info("🌱 **Forza dai!**")
 else:
-    st.info(f"🏕️ Ti trovi a **{giorni_rimanenti}** metri (giorni) di quota. Il sentiero è tracciato, continua a scendere con passo costante.")
+    st.info(ottieni_citazione_del_giorno())
+    #st.info(f"🏕️ Ti trovi a **{giorni_rimanenti}** metri (giorni) di quota. Il sentiero è tracciato, continua a scendere con passo costante.")
 
 # Sidebar standard per i task
 st.sidebar.header("📋 Ricordati di:")
