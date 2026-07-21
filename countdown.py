@@ -121,7 +121,6 @@ FRASI_INIZIO = [
 FRASI_METÀ = [
     "“Non esistono grandi conquiste che non siano state precedute da un piccolo passo.” — Proverbio. Sei a metà valle!",
     "Il panorama comincia a cambiare. Il vecchio lavoro è quasi alle spalle, il nuovo si intravede all'orizzonte.",
-    "Giro di boa. Da qui in poi la gravità gioca a tuo favore, la discesa accelera.",
     "Metà del sentiero è andata. Ottimo momento per fare il punto sui task rimasti nella sidebar.",
     "La costanza batte il talento. Ogni giorno completato è un metro di quota guadagnato verso la libertà."
 ]
@@ -131,6 +130,7 @@ FRASI_FINE = [
     "Vedi le luci della valle là in fondo? Manca pochissimo. Lascia un ottimo ricordo dietro di te.",
     "Ultimi tornanti. Respira l'aria fresca del nuovo inizio.",
     "Quota zero in vista. È il momento dei saluti e di ripulire i file locali.",
+    "Giro di boa. Da qui in poi la gravità gioca a tuo favore, la discesa accelera.",
     "Il traguardo è dietro la prossima curva. Complimenti per aver gestito il percorso al meglio."
 ]
 
