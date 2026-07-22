@@ -3,19 +3,16 @@ from datetime import date, timedelta
 import pandas as pd
 import plotly.express as px
 import requests
-import random
 
 def giorni_lavorativi(start_date, end_date):
-    inizio_ferie = datetime.date(2026, 8, 10)
-    fine_ferie = datetime.date(2026, 8, 28)
+    inizio_ferie = date(2026, 8, 10)
+    fine_ferie = date(2026, 8, 28)
     giorni = 0
     delta = end_date - start_date
     for i in range(delta.days + 1):
         giorno_corrente = start_date + timedelta(days=i)
-        # -- tolgo i giorni di ferie da fare
-        if giorno_corrente.
         if giorno_corrente.weekday() < 5 :  # Lunedì=0, Domenica=6
-            if (giorno_corrente < inizio_ferie or giorno_corrente > fine_ferie)
+            if giorno_corrente < inizio_ferie or giorno_corrente > fine_ferie:
                 giorni += 1
     return giorni
 
@@ -84,18 +81,32 @@ df = pd.DataFrame({
     "Giorni Rimanenti": giorni_mancanti_storia
 })
 
+# Definizioni periodi speciali
+inizio_ferie = date(2026, 8, 10)
+fine_ferie = date(2026, 8, 28)
+
 # Creiamo il grafico a linee
 fig = px.area(
     df, 
     x="Data", 
     y="Giorni Rimanenti",
     title="Verso quota 0 giorni",
-    labels={"Giorni Rimanenti cal.": "Giorni alla fine cal.", "Data": "Calendario"},
+    labels={"Giorni Rimanenti": "Giorni alla fine", "Data": "Calendario"},
     template="plotly_white"
 )
 
-# Personalizzazione estetica della linea (stile sentiero di montagna)
-fig.update_traces(line=dict(color="#2ca02c", width=3)) 
+# Personalizzazione estetica della linea e dell'area
+fig.update_traces(line=dict(color="#2ca02c", width=3), fillcolor="rgba(44, 160, 44, 0.3)")
+
+# Evidenziamo il periodo di ferie con colore di sfondo
+fig.add_vrect(
+    x0=inizio_ferie, 
+    x1=fine_ferie,
+    fillcolor="#ff7f0e", 
+    opacity=0.2,
+    layer="below",
+    line_width=0
+) 
 
 # Evidenziamo il punto "OGGI" sulla mappa per capire a che punto della discesa ti trovi
 fig.add_scatter(
