@@ -6,12 +6,17 @@ import requests
 import random
 
 def giorni_lavorativi(start_date, end_date):
+    inizio_ferie = datetime.date(2026, 8, 10)
+    fine_ferie = datetime.date(2026, 8, 28)
     giorni = 0
     delta = end_date - start_date
     for i in range(delta.days + 1):
         giorno_corrente = start_date + timedelta(days=i)
-        if giorno_corrente.weekday() < 5:  # Lunedì=0, Domenica=6
-            giorni += 1
+        # -- tolgo i giorni di ferie da fare
+        if giorno_corrente.
+        if giorno_corrente.weekday() < 5 :  # Lunedì=0, Domenica=6
+            if (giorno_corrente < inizio_ferie or giorno_corrente > fine_ferie)
+                giorni += 1
     return giorni
 
 def ottieni_citazione_del_giorno():
