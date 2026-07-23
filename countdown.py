@@ -21,7 +21,7 @@ def ottieni_citazione_del_giorno():
         response = requests.get("https://zenquotes.io/api/today")
         data = response.json()
         # Ritorna la citazione + l'autore
-        return f"“{data[0]['q']}” — {data[0]['a']}"
+        return f"🌱**La frase di oggi:**“{data[0]['q']}” — {data[0]['a']}"
     except:
         # Frase di backup se internet non va
         return "Fai un passo alla volta, la meta si avvicina."
